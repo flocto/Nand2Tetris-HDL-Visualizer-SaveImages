@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+    <title>HDL Visualization</title>
+    <script src="elk.bundled.js"></script>
+    <script src="svg.min.js"></script>	  
+    <script src="hdelk.js"></script>
+    <script src="https://cdn.socket.io/4.4.0/socket.io.min.js" integrity="sha384-1fOn6VtTq3PWwfsOrk45LnYcGosJwzMHv+Xh/Jx5303FVOXzEnw0EpLv30mtjmlj" crossorigin="anonymous"></script>
+    </head>
+    <body>
+    <h1 style="font-size:50px; color:#6666cc; margin:10px;">Xor.hdl</h1>
+    <div id="diagram_id"></div>
+    <script>
+    let graph = {"color":"#fff","children":[{"id":"1","label":"Or","northPorts":[],"southPorts":[],"eastPorts":["out"],"westPorts":["a →⠀a","b →⠀b"],"southtPorts":[]},{"id":"2","label":"Nand","northPorts":[],"southPorts":[],"eastPorts":["out"],"westPorts":["a →⠀a","b →⠀b"],"southtPorts":[]},{"id":"3","label":"And","northPorts":[],"southPorts":[],"eastPorts":["out⠀→ out"],"westPorts":["a","b"],"southtPorts":[]}],"edges":[{"route":["1.out","3.a"],"highlight":0},{"route":["2.out","3.b"],"highlight":1}]};
+    hdelk.layout(graph, "diagram_id");
+    </script>
+    <script>
+    let socket = io.connect("http://localhost:15557");
+    socket.on('refresh', () => {
+        window.location.reload();
+    });
+    socket.on('end', () => {
+        socket.disconnect();
+    });
+    </script>
+    </body>
+    </html>
