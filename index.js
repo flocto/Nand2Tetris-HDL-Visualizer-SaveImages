@@ -13,6 +13,7 @@ let server = app.listen(port);
 app.use(express.static(path.join(__dirname, "public")));
 let io = socket(server);
 
+// CODE TAKEN FROM https://github.com/jainpranav1/Nand2Tetris-HDL-Visualizer/blob/main/extension.js#L40
 function hdlToHTML(doc_path) {
     let dir_path = path.dirname(doc_path);
 
